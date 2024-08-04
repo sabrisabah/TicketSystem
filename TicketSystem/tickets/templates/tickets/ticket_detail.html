@@ -1,0 +1,14 @@
+{% extends 'tickets/base.html' %}
+
+{% block content %}
+<h1>{{ ticket.title }}</h1>
+<p><strong>Status:</strong> {{ ticket.get_status_display }}</p>
+<p><strong>Priority:</strong> {{ ticket.get_priority_display }}</p>
+<p><strong>Assignee:</strong> {{ ticket.assignee.username }}</p>
+<p><strong>Description:</strong> {{ ticket.description }}</p>
+<p><strong>End Date:</strong> {{ ticket.end_date }}</p>
+<p><strong>Attachment:</strong> {% if ticket.attachment %} <a href="{{ ticket.attachment.url }}">Download</a> {% else %} No attachment {% endif %}</p>
+<a href="{% url 'ticket_update' ticket.pk %}" class="btn btn-warning">Edit</a>
+<a href="{% url 'ticket_delete' ticket.pk %}" class="btn btn-danger">Delete</a>
+<a href="{% url 'ticket_list' %}" class="btn btn-secondary">Back to List</a>
+{% endblock %}
